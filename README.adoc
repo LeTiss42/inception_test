@@ -22,7 +22,13 @@ ____
 https://wordpress.org/download/releases/
 ____
 
+* Check the PHP compatibility with your WordPress version
+____
+https://make.wordpress.org/core/handbook/references/php-compatibility-and-wordpress-versions/
+____
+
 === **********
+
 === Main usage
 
 * create a new image using a Dockerfile
