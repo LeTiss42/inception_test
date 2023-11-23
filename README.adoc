@@ -1,0 +1,68 @@
+= Inception get started
+
+____
+Subject of the project : https://cdn.intra.42.fr/pdf/pdf/110882/en.subject.pdf
+____
+
+=== Wordpress
+
+* Wordpress get-started page
+____
+https://wordpress.org/documentation/article/get-started-with-wordpress/
+____
+
+* Installation page
+____
+https://developer.wordpress.org/advanced-administration/before-install/howto-install/
+____
+
+* All WP releases
+just choosing "latest" might download a newer version not compatible with other stuff.
+____
+https://wordpress.org/download/releases/
+____
+
+=== **********
+=== Main usage
+
+* create a new image using a Dockerfile
++
+[,bash]
+----
+docker build -t my_image .
+----
+* starting a container using an image
++
+[,bash]
+----
+docker run -it my_image
+----
+* connecting to a running container
++
+[,bash]
+----
+docker exec -it [container-id] bash
+----
+
+=== Persist the DB
+
+==== Volume
+
+* Create a volume
++
+[,bash]
+----
+docker volume create myDB
+----
+* Specify a volume mount when starting a container
++
+[,bash]
+----
+docker run --mount type=volume,src=myDB,target=/etc/todos my_container
+----
+
+=== Why should we use multiple containers for an app
+
+____
+https://docs.docker.com/get-started/07_multi_container/
+____

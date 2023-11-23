@@ -1,0 +1,17 @@
+# https://mariadb.com/kb/en/configuring-mariadb-with-option-files/
+
+# Option Group :
+# Options read by mysqld, which includes both MariaDB Server and MySQL Server.
+[mysqld]
+
+# Path to the database root directory
+datadir = /var/lib/mysql
+
+# if you want to use a nonstandard connection to MariaDB
+socket = /run/mysqld/mysqld.sock
+port = 3306
+
+# IP address to bind to. Several addresses may be specified, separated by a comma (,).
+bind_address=*
+
+user = mysql

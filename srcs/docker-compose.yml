@@ -1,0 +1,1 @@
+# Don't use environment variables to pass sensitive information, such as passwords, in to your containers. Use secrets instead. (from docker doc)
