@@ -34,6 +34,14 @@ ____
 https://make.wordpress.org/core/handbook/references/php-compatibility-and-wordpress-versions/
 ____
 
+== Mariadb (MySQL)
+
+* Vrac
++
+____
+https://www.javatpoint.com/mysql-tutorial
+____
+
 == Docker main usage
 
 * Create a new image using a Dockerfile
