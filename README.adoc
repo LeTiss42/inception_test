@@ -36,23 +36,53 @@ ____
 
 == Docker main usage
 
-* create a new image using a Dockerfile
+* Create a new image using a Dockerfile
 +
 [,bash]
 ----
 docker build -t my_image .
 ----
-* starting a container using an image
+* Start a container using an image
 +
 [,bash]
 ----
 docker run -it my_image
 ----
-* connecting to a running container
+* To connect to a running container
 +
 [,bash]
 ----
 docker exec -it [container-id] bash
+----
+* List images (-a to show also intermediate ones)
++
+[,bash]
+----
+docker images -a
+----
++
+or
++
+----
+docker image ls -a
+----
+* List running containers (-a to show all containers)
++
+[,bash]
+----
+docker ps -a
+----
++
+or
++
+----
+docker container ls -a
+----
+* To remove unused data (and clean up your mess)
++
+[,bash]
+----
+docker system prune -af
 ----
 
 === Persist the DB
