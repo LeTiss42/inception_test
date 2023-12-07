@@ -42,6 +42,12 @@ ____
 https://www.javatpoint.com/mysql-tutorial
 ____
 
+* Some doc about Mariadb using Docker
++
+____
+https://mariadb.com/kb/en/installing-and-using-mariadb-via-docker/
+____
+
 == Docker main usage
 
 * Create a new image using a Dockerfile
