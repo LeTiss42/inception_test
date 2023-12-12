@@ -42,6 +42,33 @@ ____
 https://www.javatpoint.com/mysql-tutorial
 ____
 
+* To enter mariaDB monitor
++
+[,bash]
+----
+service mariadb start
+----
++
+[,bash]
+----
+mariadb -u root -p
+----
+the -u here let you choose the user to connect with and the -p let you enter your password
+
+* Show a list of the databases
++
+[,bash]
+----
+SHOW DATABASES;
+----
+
+* Show a list of the different users
++
+[,bash]
+----
+SELECT user FROM mysql.user;
+----
+
 == Docker main usage
 
 * Create a new image using a Dockerfile
