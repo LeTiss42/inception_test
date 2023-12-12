@@ -64,6 +64,12 @@ SHOW DATABASES;
 SELECT user FROM mysql.user;
 ----
 
+* Some doc about Mariadb using Docker
++
+____
+https://mariadb.com/kb/en/installing-and-using-mariadb-via-docker/
+____
+
 == Docker main usage
 
 * Create a new image using a Dockerfile
