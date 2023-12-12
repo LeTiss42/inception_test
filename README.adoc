@@ -1,46 +1,41 @@
 = Project Inception : getting started
 
-____
 Subject of the project : https://cdn.intra.42.fr/pdf/pdf/110882/en.subject.pdf
-____
 
 == Why should we use multiple containers for an app
 
-____
-https://docs.docker.com/get-started/07_multi_container/
-____
+-> https://docs.docker.com/get-started/07_multi_container/
 
 == Wordpress
 
 * Wordpress getting started page
-____
-https://wordpress.org/documentation/article/get-started-with-wordpress/
-____
++
+-> https://wordpress.org/documentation/article/get-started-with-wordpress/
 
 * Installation page
-____
-https://developer.wordpress.org/advanced-administration/before-install/howto-install/
-____
++
+-> https://developer.wordpress.org/advanced-administration/before-install/howto-install/
+
 
 * All WP releases
 +
-just choosing "latest" will download the latest (how come?) version which might not be compatible with the other stuff we use.
-____
-https://wordpress.org/download/releases/
-____
+Just choosing "latest" will download the latest (how come?) version which might not be compatible with the other stuff we use.
++
+-> https://wordpress.org/download/releases/
 
 * Check the PHP compatibility with your WordPress version
-____
-https://make.wordpress.org/core/handbook/references/php-compatibility-and-wordpress-versions/
-____
++
+-> https://make.wordpress.org/core/handbook/references/php-compatibility-and-wordpress-versions/
 
 == Mariadb (MySQL)
 
-* Vrac
+* Random tuto
 +
-____
-https://www.javatpoint.com/mysql-tutorial
-____
+-> https://www.javatpoint.com/mysql-tutorial
+
+* Wordpress tuto page to install a database
++
+-> https://developer.wordpress.org/advanced-administration/before-install/creating-database/#using-the-mysql-client
 
 * To enter mariaDB monitor
 +
@@ -110,6 +105,7 @@ docker ps -a
 +
 or
 +
+[,bash]
 ----
 docker container ls -a
 ----

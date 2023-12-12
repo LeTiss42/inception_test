@@ -5,10 +5,10 @@
 FROM debian:bullseye
 
 # To test without any ENV (should be removed)
-ARG MARIA_ROOT_PWD=maria_root_pwd
 ARG MARIA_DB=maria_db
 ARG MARIA_USER=maria_user
 ARG MARIA_PWD=maria_pwd
+ARG MARIA_ROOT_PWD=maria_root_pwd
 
 # -q for quiet
 RUN apt-get update -yq \
@@ -18,6 +18,9 @@ RUN apt-get update -yq \
 
 # Copy the configuration file we want to use into the container folder
 COPY conf/my_conf.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+# Wordpress tuto page to install a database :
+# https://developer.wordpress.org/advanced-administration/before-install/creating-database/#using-the-mysql-client
 
 # Mariadb setup, can be done here or in a separate script
 # This can be done and should be done directly through MariaDB monitor to test if everything works as intended
@@ -46,7 +49,8 @@ RUN service mariadb start \
 && mariadb -u root -p"${MARIA_ROOT_PWD}" -e "FLUSH PRIVILEGES;" \
 && mariadb -u root -p"${MARIA_ROOT_PWD}" -e "CREATE DATABASE IF NOT EXISTS \`${MARIA_DB}\`;" \
 && mariadb -u root -p"${MARIA_ROOT_PWD}" -e "CREATE USER IF NOT EXISTS \`${MARIA_USER}\`@'localhost' IDENTIFIED BY '${MARIA_PWD}';" \
-&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "GRANT ALL ON \`${MARIA_DB}\`.* TO \`${MARIA_USER}\`@'localhost' IDENTIFIED BY '${MARIA_PWD}';" \
+&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "GRANT ALL PRIVILEGES ON \`${MARIA_DB}\`.* TO \`${MARIA_USER}\`@'localhost' IDENTIFIED BY '${MARIA_PWD}';" \
+# ALL and ALL PRIVILEGES are equivalent, the word PRIVILEGES is optionnal here
 && mariadb -u root -p"${MARIA_ROOT_PWD}" -e "FLUSH PRIVILEGES;" \
 # mariadb-admin is an administration program for the mysqld daemon
 && mariadb-admin -u root -p"${MARIA_ROOT_PWD}" shutdown
