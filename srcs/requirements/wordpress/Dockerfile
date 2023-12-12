@@ -15,6 +15,8 @@ RUN apt-get update -yq \
 && tar -xzf wordpress-6.3.tar.gz && rm wordpress-6.3.tar.gz \
 && chown -R root:root /app/wordpress
 
+COPY wp-config.php /app/wordpress/wp-config.php
+
 # && apt-get install -y php7.4 php-fpm php-mysql mariadb-client \
 
 # options for the tar command above
