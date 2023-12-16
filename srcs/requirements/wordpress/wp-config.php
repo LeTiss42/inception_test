@@ -43,7 +43,7 @@ define( 'DB_PASSWORD', 'maria_pwd' );
 
 /** Database hostname */
 //define( 'DB_HOST', getenv('MARIA_HOSTNAME') );
-define( 'DB_HOST', 'localhost');
+define( 'DB_HOST', 'mariadb:3306');
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
