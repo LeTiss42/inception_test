@@ -1,1 +1,42 @@
-# Don't use environment variables to pass sensitive information, such as passwords, in to your containers. Use secrets instead. (from docker doc)
+version: "3.8"
+# https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference
+# https://docs.docker.com/compose/gettingstarted/
+# https://docs.docker.com/compose/compose-file/05-services/
+
+services:
+
+  nginx:
+    depends_on:
+      - wordpress
+    build: requirements/mariadb
+    ports:
+      - "443:443"
+    networks:
+      - rugbyeuse
+    restart: unless-stopped
+    env_file: env.env
+    volumes:
+      -WordPress:
+
+  mariadb:
+    build: requirements/mariadb
+    expose:
+      - "3306"
+    restart: unless-stopped
+    env_file: env.env
+
+  wordpress:
+    depends_on:
+      - mariadb
+    build: requirements/wordpress
+    expose:
+      - "9000"
+    restart: unless-stopped
+    env_file: env.env
+
+networks:
+  rugbyeuse:
+
+volumes:
+  DB:
+  WordPress:

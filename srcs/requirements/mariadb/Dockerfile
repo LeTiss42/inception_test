@@ -4,12 +4,6 @@
 # "oldstable" debian version
 FROM debian:bullseye
 
-# To test without any ENV (should be removed)
-ARG MARIA_DB=maria_db
-ARG MARIA_USER=maria_user
-ARG MARIA_PWD=maria_pwd
-ARG MARIA_ROOT_PWD=maria_root_pwd
-
 # -q for quiet
 RUN apt-get update -yq \
 && apt-get upgrade -y \
@@ -56,7 +50,7 @@ RUN service mariadb start \
 && mariadb-admin -u root -p"${MARIA_ROOT_PWD}" shutdown
 
 # comment this to be able to use interactive (-it) docker option mode
-#CMD ["mysqld_safe"]
+CMD ["mysqld_safe"]
 
 # The mysqld_safe (or mariadb-safe but did not work here) startup script is in MariaDB distributions on Linux and Unix.
 # It is a wrapper that starts mysqld with some extra safety features suche as restarting the server when an error occurs.
