@@ -3,6 +3,11 @@ version: "3.8"
 # https://docs.docker.com/compose/gettingstarted/
 # https://docs.docker.com/compose/compose-file/05-services/
 
+# doc for volumes' drivers option (wtf is this sh**)
+# https://docs.docker.com/engine/reference/commandline/volume_create/
+# for linux :
+# https://man7.org/linux/man-pages/man8/mount.8.html
+
 services:
 
   nginx:
@@ -13,17 +18,21 @@ services:
       - "443:443"
     networks:
       - rugbyeuse
-    restart: unless-stopped
-    env_file: env.env
+    #restart: unless-stopped
+    env_file: .env
     volumes:
-      -WordPress:
+      - WordPress:/var/www/wordpress
 
   mariadb:
     build: requirements/mariadb
     expose:
       - "3306"
-    restart: unless-stopped
-    env_file: env.env
+    networks:
+      - rugbyeuse
+    #restart: unless-stopped
+    env_file: .env
+    volumes:
+      - DB:/var/lib/mysql
 
   wordpress:
     depends_on:
@@ -31,12 +40,22 @@ services:
     build: requirements/wordpress
     expose:
       - "9000"
-    restart: unless-stopped
-    env_file: env.env
+    networks:
+      - rugbyeuse
+    #restart: unless-stopped
+    env_file: .env
+    volumes:
+      - WordPress:/var/www/wordpress
 
 networks:
   rugbyeuse:
 
 volumes:
   DB:
+    driver: local
+    driver_opts:
+      device: /home/mravera/data/DB_volume
   WordPress:
+    driver: local
+    driver_opts:
+      device: /home/mravera/data/WordPress_volume

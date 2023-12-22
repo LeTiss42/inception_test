@@ -26,5 +26,7 @@ RUN cd wordpress/ && wp core install --url=mravera.42.fr --title="WP-CLI" --admi
 #&& tar -xzf wordpress-6.3.tar.gz && rm wordpress-6.3.tar.gz \
 #&& chown -R root:root /app/wordpress \
 
+#CMD ["php-fpm"]
+
 # options for the tar command above
 # -x to extract -z to use gzip -f to choose the archive file

@@ -4,6 +4,11 @@
 # "oldstable" debian version
 FROM debian:bullseye
 
+ARG MARIA_DB=maria_db
+ARG MARIA_USER=maria_user
+ARG MARIA_PWD=maria_pwd
+ARG MARIA_ROOT_PWD=maria_root_pwd 
+
 # -q for quiet
 RUN apt-get update -yq \
 && apt-get upgrade -y \
