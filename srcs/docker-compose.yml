@@ -13,7 +13,7 @@ services:
   nginx:
     depends_on:
       - wordpress
-    build: requirements/mariadb
+    build: requirements/nginx
     ports:
       - "443:443"
     networks:

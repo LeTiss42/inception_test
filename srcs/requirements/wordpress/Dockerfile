@@ -17,10 +17,11 @@ RUN apt-get update -yq \
 && wget -q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
+COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
 COPY wp-config.php /app/wordpress/wp-config.php
 
 RUN wp core download --path=./wordpress --version=6.3 --allow-root
-#RUN cd wordpress/ && wp core install --url=mravera.42.fr --title="WP-CLI" --admin_user=wpcli --admin_password=wpcli --allow-root 
+RUN cd wordpress/ && wp core install --url=mravera.42.fr --title="WP-CLI" --admin_user=wpcli --admin_password=wpcli --allow-root 
 
 #&& wget -q https://wordpress.org/wordpress-6.3.tar.gz \
 #&& tar -xzf wordpress-6.3.tar.gz && rm wordpress-6.3.tar.gz \
