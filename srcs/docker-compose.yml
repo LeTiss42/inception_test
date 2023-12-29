@@ -50,12 +50,21 @@ services:
 networks:
   rugbyeuse:
 
+# doc about bind mounts
+# https://docs.docker.com/storage/bind-mounts/
+# doc about volume
+# https://docs.docker.com/storage/volumes/
+
 volumes:
   DB:
     driver: local
     driver_opts:
       device: /home/mravera/data/DB_volume
+      type: none
+      o: bind
   WordPress:
     driver: local
     driver_opts:
       device: /home/mravera/data/WordPress_volume
+      type: none
+      o: bind

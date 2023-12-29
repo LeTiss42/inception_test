@@ -29,21 +29,22 @@ https://www.php.net/manual/en/language.basic-syntax.phptags.php
  */
 
 // ** Database settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-//define( 'DB_NAME', getenv('MARIA_DB') );
 
-define( 'DB_NAME', 'maria_db' );
+/** The name of the database for WordPress */
+define( 'DB_NAME', getenv('MARIA_DB') );
+//define( 'DB_NAME', 'maria_db' );
+
 /** Database username */
-//define( 'DB_USER', getenv('MARIA_USER') );
-define( 'DB_USER', 'maria_user');
+define( 'DB_USER', getenv('MARIA_USER') );
+//define( 'DB_USER', 'maria_user');
 
 /** Database password */
-//define( 'DB_PASSWORD', getenv('MARIA_PWD') );
-define( 'DB_PASSWORD', 'maria_pwd' );
+define( 'DB_PASSWORD', getenv('MARIA_PWD') );
+//define( 'DB_PASSWORD', 'maria_pwd' );
 
 /** Database hostname */
-//define( 'DB_HOST', getenv('MARIA_HOSTNAME') );
-define( 'DB_HOST', 'mariadb:3306');
+define( 'DB_HOST', getenv('MARIA_HOSTNAME') );
+//define( 'DB_HOST', 'mariadb:3306');
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

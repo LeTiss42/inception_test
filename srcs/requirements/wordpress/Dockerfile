@@ -19,15 +19,16 @@ RUN apt-get update -yq \
 
 COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
 COPY wp-config.php /app/wordpress/wp-config.php
+COPY ./conf/wp_install.sh /my_scripts/
 
-RUN wp core download --path=./wordpress --version=6.3 --allow-root
-RUN cd wordpress/ && wp core install --url=mravera.42.fr --title="WP-CLI" --admin_user=wpcli --admin_password=wpcli --allow-root 
+RUN chmod 777 /my_scripts/wp_install.sh \
+&& wp core download --path=./wordpress --version=6.3 --allow-root
 
 #&& wget -q https://wordpress.org/wordpress-6.3.tar.gz \
 #&& tar -xzf wordpress-6.3.tar.gz && rm wordpress-6.3.tar.gz \
 #&& chown -R root:root /app/wordpress \
 
-#CMD ["php-fpm"]
+ENTRYPOINT ["/my_scripts/wp_install.sh"]
 
 # options for the tar command above
 # -x to extract -z to use gzip -f to choose the archive file
