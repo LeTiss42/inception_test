@@ -21,6 +21,8 @@ clean:
 
 fclean:
 	${MAIN_CMD} down --rmi all --volumes
+	sudo rm -rf /home/mravera/data/DB_volume/*
+	sudo rm -rf /home/mravera/data/WordPress_volume/*
 
 re: fclean all
 

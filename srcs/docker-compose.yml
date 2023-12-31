@@ -21,10 +21,16 @@ services:
     #restart: unless-stopped
     env_file: .env
     volumes:
-      - WordPress:/var/www/wordpress
+      - WordPress:/app/wordpress
 
   mariadb:
-    build: requirements/mariadb
+    build:
+      context: requirements/mariadb
+      args:
+        - MARIA_DB=${MARIA_DB}
+        - MARIA_USER=${MARIA_USER}
+        - MARIA_USER_PWD=${MARIA_USER_PWD}
+        - MARIA_ROOT_PWD=${MARIA_ROOT_PWD}
     expose:
       - "3306"
     networks:
@@ -35,9 +41,25 @@ services:
       - DB:/var/lib/mysql
 
   wordpress:
+    stdin_open: true
+    tty: true
     depends_on:
       - mariadb
-    build: requirements/wordpress
+    build:
+      context: requirements/wordpress
+      args:
+        - MARIA_DB=${MARIA_DB}
+        - MARIA_USER=${MARIA_USER}
+        - MARIA_USER_PWD=${MARIA_USER_PWD}
+        - MARIA_ROOT_PWD=${MARIA_ROOT_PWD}
+        - DOMAIN_NAME=${DOMAIN_NAME}
+        - WP_TITLE=${WP_TITLE}
+        - WP_ADMIN_USER=${WP_ADMIN_USER}
+        - WP_ADMIN_PWD=${WP_ADMIN_PWD}
+        - WP_ADMIN_EMAIL={WP_ADMIN_EMAIL}
+        - WP_USER_LOGIN={WP_USER_LOGIN}
+        - WP_USER_PWD={WP_USER_PWD}
+        - WP_USER_EMAIL={WP_USER_EMAIL}
     expose:
       - "9000"
     networks:
@@ -45,7 +67,7 @@ services:
     #restart: unless-stopped
     env_file: .env
     volumes:
-      - WordPress:/var/www/wordpress
+      - WordPress:/app/wordpress
 
 networks:
   rugbyeuse:

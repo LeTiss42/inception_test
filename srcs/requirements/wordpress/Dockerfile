@@ -4,6 +4,22 @@
 # https://developer.wordpress.org/advanced-administration/before-install/howto-install/
 FROM debian:bullseye
 
+ARG DOMAIN_NAME
+
+ARG MARIA_DB
+ARG MARIA_USER
+ARG MARIA_USER_PWD
+ARG MARIA_ROOT_PWD
+
+ARG WP_TITLE
+ARG WP_ADMIN_USER
+ARG WP_ADMIN_PWD
+ARG WP_ADMIN_EMAIL
+
+ARG WP_USER_LOGIN
+ARG WP_USER_PWD
+ARG WP_USER_EMAIL
+
 WORKDIR /app
 
 # WordPress CLI doc
@@ -15,10 +31,11 @@ RUN apt-get update -yq \
 && apt-get install -yq wget \
 && apt-get install -y php7.4 php-fpm php-mysql mariadb-client \
 && wget -q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-&& chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+&& chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp \
+&& mkdir -p /run/php
 
 COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
-COPY wp-config.php /app/wordpress/wp-config.php
+COPY ./conf/wp-config.php /app/wordpress/wp-config.php
 COPY ./conf/wp_install.sh /my_scripts/
 
 RUN chmod 777 /my_scripts/wp_install.sh \

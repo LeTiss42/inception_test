@@ -4,10 +4,10 @@
 # "oldstable" debian version
 FROM debian:bullseye
 
-ARG MARIA_DB=maria_db
-ARG MARIA_USER=maria_user
-ARG MARIA_PWD=maria_pwd
-ARG MARIA_ROOT_PWD=maria_root_pwd 
+ARG MARIA_DB
+ARG MARIA_USER
+ARG MARIA_USER_PWD
+ARG MARIA_ROOT_PWD
 
 # -q for quiet
 RUN apt-get update -yq \
@@ -41,18 +41,18 @@ COPY conf/my_conf.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN service mariadb start \
 # Next line is here just to test without using the previous ARG directives
 # (must be in the same RUN directive since each RUN will create another different layer, each new layer forgetting export from other layers)
-#&& export MARIA_ROOT_PWD=maria_root_pwd MARIA_DB=maria_db MARIA_PWD=maria_pwd MARIA_USER=maria_user \
-&& sleep 5 \
+#&& export MARIA_ROOT_PWD=maria_root_pwd MARIA_DB=maria_db MARIA_USER_PWD=maria_user_pwd MARIA_USER=maria_user \
+#&& sleep 5 \
 # how to reset (or in our case set) root password -> http://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html
-&& mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MARIA_ROOT_PWD}';" \
-&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "FLUSH PRIVILEGES;" \
-&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "CREATE DATABASE IF NOT EXISTS \`${MARIA_DB}\`;" \
-&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "CREATE USER IF NOT EXISTS \`${MARIA_USER}\`@'localhost' IDENTIFIED BY '${MARIA_PWD}';" \
-&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "GRANT ALL PRIVILEGES ON \`${MARIA_DB}\`.* TO \`${MARIA_USER}\`@'localhost' IDENTIFIED BY '${MARIA_PWD}';" \
+&& mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MARIA_ROOT_PWD';" \
+&& mariadb -u root -p"$MARIA_ROOT_PWD" -e "FLUSH PRIVILEGES;" \
+&& mariadb -u root -p"$MARIA_ROOT_PWD" -e "CREATE DATABASE IF NOT EXISTS \`$MARIA_DB\`;" \
+&& mariadb -u root -p"$MARIA_ROOT_PWD" -e "CREATE USER IF NOT EXISTS \`$MARIA_USER\`@'%' IDENTIFIED BY '$MARIA_USER_PWD';" \
+&& mariadb -u root -p"$MARIA_ROOT_PWD" -e "GRANT ALL PRIVILEGES ON \`$MARIA_DB\`.* TO \`$MARIA_USER\`@'%' IDENTIFIED BY '$MARIA_USER_PWD';" \
 # ALL and ALL PRIVILEGES are equivalent, the word PRIVILEGES is optionnal here
-&& mariadb -u root -p"${MARIA_ROOT_PWD}" -e "FLUSH PRIVILEGES;" \
+&& mariadb -u root -p"$MARIA_ROOT_PWD" -e "FLUSH PRIVILEGES;" \
 # mariadb-admin is an administration program for the mysqld daemon
-&& mariadb-admin -u root -p"${MARIA_ROOT_PWD}" shutdown
+&& mariadb-admin -u root -p"$MARIA_ROOT_PWD" shutdown
 
 # comment this to be able to use interactive (-it) docker option mode
 CMD ["mysqld_safe"]
