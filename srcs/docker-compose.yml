@@ -18,7 +18,7 @@ services:
       - "443:443"
     networks:
       - rugbyeuse
-    #restart: unless-stopped
+    restart: unless-stopped
     env_file: .env
     volumes:
       - WordPress:/app/wordpress
@@ -35,7 +35,7 @@ services:
       - "3306"
     networks:
       - rugbyeuse
-    #restart: unless-stopped
+    restart: unless-stopped
     env_file: .env
     volumes:
       - DB:/var/lib/mysql
@@ -52,6 +52,7 @@ services:
         - MARIA_USER=${MARIA_USER}
         - MARIA_USER_PWD=${MARIA_USER_PWD}
         - MARIA_ROOT_PWD=${MARIA_ROOT_PWD}
+        - MARIA_HOSTNAME=${MARIA_HOSTNAME}
         - DOMAIN_NAME=${DOMAIN_NAME}
         - WP_TITLE=${WP_TITLE}
         - WP_ADMIN_USER=${WP_ADMIN_USER}
@@ -64,7 +65,7 @@ services:
       - "9000"
     networks:
       - rugbyeuse
-    #restart: unless-stopped
+    restart: unless-stopped
     env_file: .env
     volumes:
       - WordPress:/app/wordpress

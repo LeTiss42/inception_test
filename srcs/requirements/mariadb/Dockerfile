@@ -55,6 +55,10 @@ RUN service mariadb start \
 && mariadb-admin -u root -p"$MARIA_ROOT_PWD" shutdown
 
 # comment this to be able to use interactive (-it) docker option mode
+# or add		stdin_open: true
+#				tty: true
+# in the docker compose file
+
 CMD ["mysqld_safe"]
 
 # The mysqld_safe (or mariadb-safe but did not work here) startup script is in MariaDB distributions on Linux and Unix.

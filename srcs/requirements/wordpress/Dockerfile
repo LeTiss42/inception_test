@@ -10,6 +10,7 @@ ARG MARIA_DB
 ARG MARIA_USER
 ARG MARIA_USER_PWD
 ARG MARIA_ROOT_PWD
+ARG MARIA_HOSTNAME
 
 ARG WP_TITLE
 ARG WP_ADMIN_USER
@@ -39,7 +40,8 @@ COPY ./conf/wp-config.php /app/wordpress/wp-config.php
 COPY ./conf/wp_install.sh /my_scripts/
 
 RUN chmod 777 /my_scripts/wp_install.sh \
-&& wp core download --path=./wordpress --version=6.3 --allow-root
+&& wp core download --path=./wordpress --version=6.3 --allow-root \
+&& sleep 5
 
 #&& wget -q https://wordpress.org/wordpress-6.3.tar.gz \
 #&& tar -xzf wordpress-6.3.tar.gz && rm wordpress-6.3.tar.gz \

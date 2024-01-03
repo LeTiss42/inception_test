@@ -39,12 +39,12 @@ define( 'DB_USER', getenv('MARIA_USER') );
 //define( 'DB_USER', 'maria_user');
 
 /** Database password */
-define( 'DB_PASSWORD', getenv('MARIA_PWD') );
+define( 'DB_PASSWORD', getenv('MARIA_USER_PWD') );
 //define( 'DB_PASSWORD', 'maria_pwd' );
 
 /** Database hostname */
-//define( 'DB_HOST', getenv('mariadb:3306') );
-define( 'DB_HOST', 'mariadb');
+define( 'DB_HOST', getenv('MARIA_HOSTNAME') );
+//define( 'DB_HOST', 'mariadb');
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

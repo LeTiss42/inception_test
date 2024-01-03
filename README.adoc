@@ -70,6 +70,12 @@ ____
 https://mariadb.com/kb/en/installing-and-using-mariadb-via-docker/
 ____
 
+== Localhost redirection
++
+____
+https://bowerwebsolutions.com/how-to-edit-your-local-host-file-for-testing-web-sites/
+____
+
 == Docker main usage
 
 * Create a new image using a Dockerfile

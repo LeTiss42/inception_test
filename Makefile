@@ -2,7 +2,7 @@
 # -f to specify a path to a Compose file
 # -p to specify a project name
 NAME = inception
-SRCS = ./srcs/docker-compose.yml
+SRCS = /home/mravera/inception_test/srcs/docker-compose.yml
 MAIN_CMD = docker compose -f ${SRCS} -p ${NAME}
 
 all: down build up
