@@ -41,8 +41,8 @@ services:
       - DB:/var/lib/mysql
 
   wordpress:
-    stdin_open: true
-    tty: true
+#    stdin_open: true
+#    tty: true
     depends_on:
       - mariadb
     build:
