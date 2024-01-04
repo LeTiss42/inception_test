@@ -18,7 +18,7 @@ services:
       - "443:443"
     networks:
       - rugbyeuse
-    restart: unless-stopped
+    restart: always
     env_file: .env
     volumes:
       - WordPress:/app/wordpress
@@ -35,7 +35,7 @@ services:
       - "3306"
     networks:
       - rugbyeuse
-    restart: unless-stopped
+    restart: always
     env_file: .env
     volumes:
       - DB:/var/lib/mysql
@@ -65,7 +65,7 @@ services:
       - "9000"
     networks:
       - rugbyeuse
-    restart: unless-stopped
+    restart: always
     env_file: .env
     volumes:
       - WordPress:/app/wordpress

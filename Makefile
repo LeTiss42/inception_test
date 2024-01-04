@@ -24,6 +24,6 @@ fclean:
 	sudo rm -rf /home/mravera/data/DB_volume/*
 	sudo rm -rf /home/mravera/data/WordPress_volume/*
 
-re: fclean all
+re: fclean up
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re up down
